@@ -201,6 +201,16 @@ async def scan_slip(
         )
     except RuntimeError as exc:
         logger.exception("OCR failed")
+        error_msg = str(exc)
+        # Check if it's a model loading error (first request)
+        if "Model load failed" in error_msg:
+            return JSONResponse(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                content=ErrorResponse(
+                    message="OCR service loading (first request can take 10-30s on free tier)",
+                    detail=error_msg,
+                ).model_dump(),
+            )
         return JSONResponse(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             content=ErrorResponse(

@@ -73,7 +73,12 @@ def extract_text(image: np.ndarray) -> OCRLines:
     Raises:
         RuntimeError: on EasyOCR inference failure.
     """
-    reader = _get_reader()
+    try:
+        reader = _get_reader()
+    except Exception as exc:
+        logger.exception("Failed to load EasyOCR model - check memory/disk")
+        raise RuntimeError(f"Model load failed: {exc}") from exc
+    
     try:
         # readtext returns: [ (bbox, text, confidence), ... ]
         results = reader.readtext(
