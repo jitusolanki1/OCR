@@ -4,7 +4,7 @@
 # ============================================================
 
 # ── Stage 1: Builder ─────────────────────────────────────────────────────────
-FROM python:3.11-slim AS builder
+FROM python:3.12-slim AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libglib2.0-0 libsm6 libxext6 libxrender-dev \
@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 \
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ── Stage 2: Runtime ─────────────────────────────────────────────────────────
-FROM python:3.11-slim AS runtime
+FROM python:3.12-slim AS runtime
 
 LABEL description="UPI OCR API — EasyOCR + FastAPI"
 
