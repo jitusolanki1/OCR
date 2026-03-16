@@ -8,7 +8,7 @@ uvicorn[standard]==0.29.0
 python-multipart==0.0.9        # Required for UploadFile
 
 # Settings / validation
-pydantic==2.7.1
+pydantic>=2.9.0                     # Python 3.14 compatible
 
 # OCR engine (EasyOCR)
 easyocr==1.7.1
