@@ -262,9 +262,10 @@ async def scan_slip(
 @app.on_event("startup")
 async def _startup():
     logger.info("UPI OCR API starting — DEBUG=%s", DEBUG)
-    # Pre-warm EasyOCR model at startup to avoid 5-15s delay on first request
-    from ocr_engine import warmup_model
-    warmup_model()
+    # DISABLED: Do NOT pre-warm EasyOCR model at startup on free tier (512MB RAM).
+    # The model (300+ MB) will be loaded on first request instead (lazy loading).
+    # from ocr_engine import warmup_model
+    # warmup_model()
 
 
 @app.on_event("shutdown")
