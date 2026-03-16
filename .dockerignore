@@ -1,0 +1,36 @@
+# Git / editor
+.git
+.gitignore
+.vscode
+*.md
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+
+# Test artefacts
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# PaddleOCR model cache (pre-warmed in Dockerfile, not in context)
+# Uncomment if you store models locally:
+# .paddleocr/
+
+# Miscellaneous
+*.DS_Store
+Thumbs.db
