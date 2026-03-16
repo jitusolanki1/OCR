@@ -1,5 +1,5 @@
 # ============================================================
-# UPI OCR API — Python 3.11 Dependencies
+# UPI OCR API — Python 3.12 Dependencies
 # ============================================================
 
 # Web framework
@@ -8,21 +8,21 @@ uvicorn[standard]==0.29.0
 python-multipart==0.0.9        # Required for UploadFile
 
 # Settings / validation
-pydantic>=2.9.0                     # Python 3.14 compatible
+pydantic==2.7.1
 
-# OCR engine (EasyOCR)
+# OCR engine (EasyOCR — supports Python 3.8-3.12)
 easyocr==1.7.1
 
 # Image processing
 opencv-python-headless==4.9.0.80   # Headless = no GUI deps (Docker-safe)
-numpy>=1.27.0                       # Python 3.14 compatible
-Pillow>=11.0.0                      # Python 3.14 compatible (was 10.3.0)
+numpy==1.26.4
+Pillow==10.3.0                     # Used internally by EasyOCR
 
 # PyTorch CPU-only (EasyOCR dependency)
 # Install BEFORE easyocr to ensure CPU wheel is used:
-#   pip install torch>=2.3.0 torchvision>=0.18.0 --index-url https://download.pytorch.org/whl/cpu
-torch>=2.3.0
-torchvision>=0.18.0
+#   pip install torch==2.2.2 torchvision==0.17.2 --index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2
+torchvision==0.17.2
 
 # Testing
 pytest==8.2.0
