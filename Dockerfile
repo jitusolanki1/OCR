@@ -12,13 +12,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY docker-requirements.txt .
+COPY requirements.txt .
 
 # Install PyTorch CPU wheel first — prevents pip from pulling the 2 GB CUDA build
-RUN pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 \
+RUN pip install --no-cache-dir "torch>=2.4.0" "torchvision>=0.19.0" \
         --index-url https://download.pytorch.org/whl/cpu
 
-RUN pip install --no-cache-dir -r docker-requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # ── Stage 2: Runtime ─────────────────────────────────────────────────────────
 FROM python:3.12-slim AS runtime
